@@ -1,9 +1,9 @@
 ﻿namespace DecodeServerClient
 {
-    internal class SerialNumerMsg
+    internal class SerialNumberUser
     {
         public int Serial { get; set; }
 
-        public string Message { get; set; }
+        public string User { get; set; }
     }
 }
