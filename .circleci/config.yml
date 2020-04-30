@@ -1,0 +1,16 @@
+version: 2
+
+jobs:
+  build:
+    machine:
+      image: windows-server-2019-vs2019:stable
+    resource_class: windows.large
+    steps:
+      - run:
+          name: Make a output directory
+          command: mkdir dist
+      - run:
+          name: Build with dotnet command
+          command: dotnet publish DecodeServerClient.sln --configuration Release -p:PublishSingleFile=true -r win10-x64 -o dist/client.exe
+      - store_artifacts:
+          path: dist
