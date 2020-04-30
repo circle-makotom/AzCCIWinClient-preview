@@ -9,9 +9,9 @@ jobs:
       - checkout
       - run:
           name: Create a delivery directory
-          command: mkdir dist
+          command: mkdir -p dist
       - run:
-          name: Build with dotnet command
-          command: dotnet publish DecodeServerClient.sln --configuration Release -p:PublishSingleFile=true -r win10-x64 -o dist/client.exe
+          name: Build with dotnet
+          command: dotnet publish DecodeServerClient.sln --configuration Release -p:PublishSingleFile=true -r win10-x64 -o dist
       - store_artifacts:
           path: dist
