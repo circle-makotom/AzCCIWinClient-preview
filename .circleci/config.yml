@@ -6,8 +6,9 @@ jobs:
       image: windows-server-2019-vs2019:stable
     resource_class: windows.large
     steps:
+      - checkout
       - run:
-          name: Make a output directory
+          name: Create a delivery directory
           command: mkdir dist
       - run:
           name: Build with dotnet command
