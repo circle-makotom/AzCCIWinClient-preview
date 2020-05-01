@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Compute build ID
-          command: echo "${env:CIRCLE_BUILD_NUM}-$($env:CIRCLE_SHA1.Substring(0, 7)}" | tee version.txt
+          command: echo "${env:CIRCLE_BUILD_NUM}-$($env:CIRCLE_SHA1.Substring(0, 7))" | tee version.txt
       - run:
           name: Build with dotnet
           command: dotnet publish DecodeServerClient.sln --configuration Release -o dist -p:PublishSingleFile=true -p:Version=$(cat version.txt) -r win10-x64
