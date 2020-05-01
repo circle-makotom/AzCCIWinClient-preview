@@ -4,14 +4,15 @@ jobs:
   build:
     machine:
       image: windows-server-2019-vs2019:stable
+    shell: powershell.exe
     resource_class: windows.large
     steps:
       - checkout
       - run:
-          name: Create a delivery directory
-          command: mkdir -p dist
+          name: Compute build ID
+          command: echo "${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" > version.txt
       - run:
           name: Build with dotnet
-          command: dotnet publish DecodeServerClient.sln --configuration Release -p:PublishSingleFile=true -r win10-x64 -o dist
+          command: dotnet publish DecodeServerClient.sln --configuration Release -o dist -p:PublishSingleFile=true -p:Version=$(cat version.txt) -r win10-x64
       - store_artifacts:
           path: dist

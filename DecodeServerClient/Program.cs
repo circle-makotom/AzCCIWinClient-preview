@@ -1,7 +1,12 @@
-﻿namespace DecodeServerClient
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+
+[assembly: System.Reflection.AssemblyVersion("0.0.*")]
+
+namespace DecodeServerClient
 {
-    using System;
-    using System.Threading.Tasks;
+
 
     public class Program
     {
@@ -12,6 +17,9 @@
                 string user = Util.GetUserFromArgs(args);
 
                 Console.WriteLine((new SayHello(user)).GreetingMessage());
+                Console.WriteLine();
+                Console.WriteLine($"Client version: {FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion}");
+                Console.WriteLine($"Server version: {await Util.GetServerVersion()}");
                 Console.WriteLine();
 
                 {

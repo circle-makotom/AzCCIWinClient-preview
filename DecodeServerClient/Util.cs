@@ -37,16 +37,21 @@
             return JsonSerializer.Deserialize<SerialNumerMsg>(str, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
+        internal static async Task<SerialNumberUser[]> GetSerialNumberUsersFromServer()
+        {
+            return JsonSerializer.Deserialize<SerialNumberUser[]>(await Util.HTTPGet($"{Util.httpHost}/users"), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+
+        internal static async Task<string> GetServerVersion()
+        {
+            return JsonSerializer.Deserialize<string>(await Util.HTTPGet($"{Util.httpHost}/"));
+        }
+
         internal static string FormatSerialNumberMsg(SerialNumerMsg msg)
         {
             return $@"Your serial number is {msg.Serial}.
 Here is the mssage from the server:
 {msg.Message}";
-        }
-
-        internal static async Task<SerialNumberUser[]> GetSerialNumberUsersFromServer()
-        {
-            return JsonSerializer.Deserialize<SerialNumberUser[]>(await Util.HTTPGet($"{Util.httpHost}/users"), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
         internal static string FormatSerialNumberUserList(SerialNumberUser[] userList)
