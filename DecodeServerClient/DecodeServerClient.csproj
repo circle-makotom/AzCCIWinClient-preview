@@ -6,6 +6,7 @@
     <Authors>Makoto Mizukami</Authors>
     <Company>CircleCI</Company>
     <Deterministic>false</Deterministic>
+	<Version Condition="'$(Version)' == ''">0-devel</Version>
 	<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 	<GenerateAssemblyVersionAttribute >false</GenerateAssemblyVersionAttribute>
   </PropertyGroup>

@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace DecodeServerClient
 {
-
-
     public class Program
     {
         public static void Main(string[] args)
@@ -18,9 +16,14 @@ namespace DecodeServerClient
 
                 Console.WriteLine((new SayHello(user)).GreetingMessage());
                 Console.WriteLine();
-                Console.WriteLine($"Client version: {FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion}");
-                Console.WriteLine($"Server version: {await Util.GetServerVersion()}");
-                Console.WriteLine();
+
+                {
+                    FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                    Console.WriteLine($"Client file version: {fvi.FileVersion}");
+                    Console.WriteLine($"Client product version: {fvi.ProductVersion}");
+                    Console.WriteLine($"Server version: {await Util.GetServerVersion()}");
+                    Console.WriteLine();
+                }
 
                 {
                     SerialNumerMsg serverMsg = await Util.GetSerialNumberMsgForUserFromServer(user);
