@@ -10,7 +10,7 @@ namespace DecodeServerClientTest
         public void GreetingMessageTest()
         {
             string[] testedName = { "Alice", "Bob" };
-            SayHello inst = new SayHello(testedName[0]);
+            var inst = new SayHello(testedName[0]);
 
             Assert.AreEqual($"Greetings, {testedName[0]}!", inst.GreetingMessage());
 

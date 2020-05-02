@@ -1,4 +1,8 @@
-﻿namespace DecodeServerClient
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("DecodeServerClientTest")]
+
+namespace DecodeServerClient
 {
     internal class SerialNumberUser
     {

@@ -28,7 +28,7 @@ namespace DecodeServerClient
                     Console.WriteLine();
 
                     {
-                        SerialNumerMsg serverMsg = await ServerWrapper.GetSerialNumberMsgForUserFromServer(user);
+                        SerialNumerMsg serverMsg = await ServerWrapper.GetSerialNumberFromServer(user);
                         Console.WriteLine(ServerWrapper.FormatSerialNumberMsg(serverMsg));
                     }
 

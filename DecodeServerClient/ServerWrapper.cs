@@ -12,17 +12,22 @@ namespace DecodeServerClient
 {
     internal class ServerWrapper
     {
-        private static readonly HttpClient Client = new HttpClient()
+        private static HttpClient client = new HttpClient()
         {
             BaseAddress = new Uri("https://server-preview.azurewebsites.net")
         };
 
-        internal static async Task<string> HTTPGet(string url)
+        internal static HttpClient Client
         {
-                HttpResponseMessage response = await Client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
+            get
+            {
+                return client;
+            }
 
-                return await response.Content.ReadAsStringAsync();
+            set
+            {
+                client = value;
+            }
         }
 
         internal static async Task<string> GetServerVersion()
@@ -30,7 +35,7 @@ namespace DecodeServerClient
             return JsonSerializer.Deserialize<string>(await ServerWrapper.HTTPGet("/"));
         }
 
-        internal static async Task<SerialNumerMsg> GetSerialNumberMsgForUserFromServer(string user)
+        internal static async Task<SerialNumerMsg> GetSerialNumberFromServer(string user)
         {
             return JsonSerializer.Deserialize<SerialNumerMsg>(await ServerWrapper.HTTPGet(ServerWrapper.GetSanitizedURLForSerial(user)), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
@@ -59,7 +64,7 @@ Here is the message from the server:
 
         internal static string FormatSerialNumberUserList(SerialNumberUser[] userList)
         {
-            List<string> userStr = new List<string>();
+            var userStr = new List<string>();
 
             Array.ForEach(userList, (SerialNumberUser user) => userStr.Add(ServerWrapper.FormatSerialNumberUser(user)));
 
@@ -69,6 +74,14 @@ Here is the message from the server:
         internal static string FormatSerialNumberUser(SerialNumberUser user)
         {
             return $"{user.Serial} = {user.User}";
+        }
+
+        private static async Task<string> HTTPGet(string url)
+        {
+            HttpResponseMessage response = await Client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }
