@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Test with VSTest
           command: |
-            dotnet vstest .\DecodeServerClientTest\bin\Release\netcoreapp3.1\win10-x64\DecodeServerClientTest.dll /InIsolation /platform:x64 /logger:console;verbosity=detailed
+            dotnet vstest .\DecodeServerClientTest\bin\Release\netcoreapp3.1\win10-x64\DecodeServerClientTest.dll /InIsolation /platform:x64 /logger:"console;verbosity=detailed"
       - persist_to_workspace:
           root: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/
           paths:
