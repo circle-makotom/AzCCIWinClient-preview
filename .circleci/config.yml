@@ -5,7 +5,7 @@ jobs:
     machine:
       image: windows-server-2019-vs2019:stable
     shell: powershell.exe
-    resource_class: windows.large
+    resource_class: windows.medium
     steps:
       - checkout
       - run:
