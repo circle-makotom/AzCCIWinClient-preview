@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Web;
-
-[assembly: InternalsVisibleTo("DecodeServerClientTest")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DecodeServerClientTest")]
 
 namespace DecodeServerClient
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Text.Json;
+    using System.Threading.Tasks;
+    using System.Web;
+
     internal class ServerWrapper
     {
         private static HttpClient client = new HttpClient()

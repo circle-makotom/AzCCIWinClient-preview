@@ -1,11 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-
-[assembly: System.Reflection.AssemblyVersion("0.0.*")]
+﻿[assembly: System.Reflection.AssemblyVersion("0.0.*")]
 
 namespace DecodeServerClient
 {
+    using System;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
+
     public class Program
     {
         public static void Main(string[] args)

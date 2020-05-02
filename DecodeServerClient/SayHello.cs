@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("DecodeServerClientTest")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DecodeServerClientTest")]
 
 namespace DecodeServerClient
 {
