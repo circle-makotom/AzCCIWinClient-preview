@@ -10,7 +10,8 @@ jobs:
       - checkout
       - run:
           name: Compute version number
-          command: echo "0.0.${env:CIRCLE_BUILD_NUM}-$($env:CIRCLE_SHA1.Substring(0, 7))" | Tee-Object version.txt
+          command: |
+            Write-Output "$(Select-String -Path .\DecodeServerClient\Program.cs -Pattern "System.Reflection.AssemblyVersion\(`"([^*]*)\*`"\)").Matches[0].Groups[1].Value)${env:CIRCLE_BUILD_NUM}-$($env:CIRCLE_SHA1.Substring(0, 7))" | Tee-Object version.txt
       - run:
           name: Build with dotnet
           command: |
