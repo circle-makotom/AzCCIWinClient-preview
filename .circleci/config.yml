@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 jobs:
   build-and-test:
@@ -24,6 +24,7 @@ jobs:
           path: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/publish
 
 workflows:
+  version: 2
   build-and-test:
     jobs:
       - build-and-test
