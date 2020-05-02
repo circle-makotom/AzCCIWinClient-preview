@@ -13,6 +13,6 @@ jobs:
           command: echo "${env:CIRCLE_BUILD_NUM}-$($env:CIRCLE_SHA1.Substring(0, 7))" | tee version.txt
       - run:
           name: Build with dotnet
-          command: dotnet publish DecodeServerClient.sln --configuration Release -o dist -p:PublishSingleFile=true -p:Version=$(cat version.txt) -r win10-x64
+          command: dotnet publish DecodeServerClient\DecodeServerClient.csproj --configuration Release -p:PublishSingleFile=true -p:Version=$(cat version.txt) -r win10-x64
       - store_artifacts:
-          path: dist
+          path: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/publish
