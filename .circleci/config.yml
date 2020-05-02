@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  github-release: h-matsuo/github-release@0.1.3
+
 jobs:
   build-and-test:
     machine:
@@ -12,6 +15,10 @@ jobs:
           name: Compute version number
           command: |
             (Select-String -Path .\DecodeServerClient\Program.cs -Pattern "System.Reflection.AssemblyVersion\(`"([^*]*)\*`"\)").Matches[0].Groups[1].Value + $env:CIRCLE_BUILD_NUM + "-" + $env:CIRCLE_SHA1.Substring(0, 7) | Tee-Object version.txt
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - version.txt
       - run:
           name: Build with dotnet
           command: |
@@ -21,11 +28,31 @@ jobs:
           name: Test with VSTest.Console.exe
           command: |
             & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" .\DecodeServerClientTest\bin\Release\netcoreapp3.1\win10-x64\DecodeServerClientTest.dll /InIsolation /platform:x64
+      - persist_to_workspace:
+          root: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/
+          paths:
+            - publish
       - store_artifacts:
           path: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/publish
+
+  release:
+    docker:
+      - image: github-release/default
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Compute release tag
+          command: echo "export RELEASE_TAG=\"v$(cat version.txt)\"" >> $BASH_ENV
+      - github-release/create:
+          tag: $RELEASE_TAG
+          title: $RELEASE_TAG
+          description: $CIRCLE_BUILD_URL
+          file-path: publish
 
 workflows:
   version: 2
   build-and-test:
     jobs:
       - build-and-test
+      - release
