@@ -9,12 +9,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Compute build ID
+          name: Compute version number
           command: echo "${env:CIRCLE_BUILD_NUM}-$($env:CIRCLE_SHA1.Substring(0, 7))" | tee version.txt
       - run:
           name: Build with dotnet
           command: |
-            dotnet build .\DecodeServerClient.sln --configuration Release -p:Version=$(cat version.txt)
+            dotnet build .\DecodeServerClient.sln --configuration Release -p:Version=$(cat version.txt) -r win10-x64
             dotnet publish DecodeServerClient\DecodeServerClient.csproj --configuration Release -p:PublishSingleFile=true -p:Version=$(cat version.txt) -r win10-x64
       - run:
           name: Test with VSTest.Console.exe
