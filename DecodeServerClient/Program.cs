@@ -12,11 +12,6 @@ namespace DecodeServerClient
         {
             Task.Run(async () =>
             {
-                string user = ServerWrapper.GetUserFromArgs(args);
-
-                Console.WriteLine(new SayHello(user).GreetingMessage());
-                Console.WriteLine();
-
                 {
                     FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
                     Console.WriteLine($"Client file version: {fvi.FileVersion}");
@@ -26,17 +21,25 @@ namespace DecodeServerClient
                 }
 
                 {
-                    SerialNumerMsg serverMsg = await ServerWrapper.GetSerialNumberMsgForUserFromServer(user);
-                    Console.WriteLine(ServerWrapper.FormatSerialNumberMsg(serverMsg));
-                }
+                    string user = args.Length > 0 ? args[0] : Program.PromptUsername();
 
-                Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine(new SayHello(user).GreetingMessage());
+                    Console.WriteLine();
 
-                {
-                    SerialNumberUser[] users = await ServerWrapper.GetSerialNumberUsersFromServer();
+                    {
+                        SerialNumerMsg serverMsg = await ServerWrapper.GetSerialNumberMsgForUserFromServer(user);
+                        Console.WriteLine(ServerWrapper.FormatSerialNumberMsg(serverMsg));
+                    }
 
-                    Console.WriteLine("Below is the list of users:");
-                    Console.WriteLine(ServerWrapper.FormatSerialNumberUserList(users));
+                    Console.WriteLine();
+
+                    {
+                        SerialNumberUser[] users = await ServerWrapper.GetSerialNumberUsersFromServer();
+
+                        Console.WriteLine("Below is the list of users:");
+                        Console.WriteLine(ServerWrapper.FormatSerialNumberUserList(users));
+                    }
                 }
 
                 Console.WriteLine();
@@ -44,6 +47,12 @@ namespace DecodeServerClient
                 Console.WriteLine("Press enter to close.");
                 Console.ReadLine();
             }).GetAwaiter().GetResult();
+        }
+
+        private static string PromptUsername()
+        {
+            Console.Write("Type your name: ");
+            return Console.ReadLine();
         }
     }
 }
