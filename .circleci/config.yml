@@ -25,7 +25,7 @@ jobs:
             dotnet build .\DecodeServerClient.sln --configuration Release -p:Version=$(Get-Content version.txt) -r win10-x64
             dotnet publish DecodeServerClient\DecodeServerClient.csproj --configuration Release -p:PublishSingleFile=true -p:Version=$(Get-Content version.txt) -r win10-x64
       - run:
-          name: Test with VSTest.Console.exe
+          name: Test with VSTest
           command: |
             dotnet vstest .\DecodeServerClientTest\bin\Release\netcoreapp3.1\win10-x64\DecodeServerClientTest.dll /InIsolation /platform:x64
       - persist_to_workspace:
