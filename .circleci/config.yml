@@ -42,7 +42,7 @@ jobs:
           at: ./
       - run:
           name: Compute release tag
-          command: echo "export RELEASE_TAG=\"v$(cat version.txt)\"" >> $BASH_ENV
+          command: echo "export RELEASE_TAG=\"v$(iconv -f UTF-16 -t UTF-8 version.txt)\"" >> $BASH_ENV
       - github-release/create:
           tag: $RELEASE_TAG
           title: $RELEASE_TAG
