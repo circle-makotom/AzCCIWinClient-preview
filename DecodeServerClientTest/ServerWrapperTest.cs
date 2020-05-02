@@ -14,7 +14,7 @@
     [TestClass]
     public class ServerWrapperTest
     {
-        private static readonly string HttpHost = "https://server-preview.azurewebsites.net";
+        private static readonly string HttpHost = "http://localhost";
 
         [TestMethod]
         public void GetServerVersionTest()
