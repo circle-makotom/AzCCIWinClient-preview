@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Test with VSTest.Console.exe
           command: |
-            & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" .\DecodeServerClientTest\bin\Release\netcoreapp3.1\win10-x64\DecodeServerClientTest.dll /InIsolation /platform:x64
+            dotnet vstest.\DecodeServerClientTest\bin\Release\netcoreapp3.1\win10-x64\DecodeServerClientTest.dll /InIsolation /platform:x64
       - persist_to_workspace:
           root: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/
           paths:
