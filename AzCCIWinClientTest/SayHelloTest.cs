@@ -1,4 +1,4 @@
-namespace AzCCIWinClientTest
+﻿namespace AzCCIWinClientTest
 {
     using AzCCIWinClient;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,10 +12,10 @@ namespace AzCCIWinClientTest
             string[] testedName = { "Alice", "Bob" };
             var inst = new SayHello(testedName[0]);
 
-            Assert.AreEqual($"Greetings, {testedName[0]}!", inst.GreetingMessage());
+            Assert.AreEqual($"こんにちは, {testedName[0]}!", inst.GreetingMessage());
 
             inst.User = testedName[1];
-            Assert.AreEqual($"Greetings, {testedName[1]}!", inst.GreetingMessage());
+            Assert.AreEqual($"こんにちは, {testedName[1]}!", inst.GreetingMessage());
         }
     }
 }
