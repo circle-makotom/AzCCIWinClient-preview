@@ -13,7 +13,7 @@ namespace AzCCIWinClient
     {
         private static HttpClient client = new HttpClient()
         {
-            BaseAddress = new Uri("https://server-preview.azurewebsites.net")
+            BaseAddress = new Uri("https://azcci.azurewebsites.net")
         };
 
         internal static HttpClient Client
