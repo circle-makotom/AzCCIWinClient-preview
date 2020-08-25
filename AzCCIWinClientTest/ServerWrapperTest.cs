@@ -1,4 +1,4 @@
-﻿namespace DecodeServerClientTest
+﻿namespace AzCCIWinClientTest
 {
     using System;
     using System.Net;
@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using DecodeServerClient;
+    using AzCCIWinClient;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using Moq.Protected;

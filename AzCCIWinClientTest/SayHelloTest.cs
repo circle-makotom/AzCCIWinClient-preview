@@ -1,6 +1,6 @@
-namespace DecodeServerClientTest
+namespace AzCCIWinClientTest
 {
-    using DecodeServerClient;
+    using AzCCIWinClient;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

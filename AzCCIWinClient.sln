@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecodeServerClient", "DecodeServerClient\DecodeServerClient.csproj", "{C28FC160-389C-42E5-BB1C-4F11F3F1CA19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzCCIWinClient", "AzCCIWinClient\AzCCIWinClient.csproj", "{C28FC160-389C-42E5-BB1C-4F11F3F1CA19}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecodeServerClientTest", "DecodeServerClientTest\DecodeServerClientTest.csproj", "{76411DCC-CB9A-4AA5-9F22-33B557DFC47D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzCCIWinClientTest", "AzCCIWinClientTest\AzCCIWinClientTest.csproj", "{76411DCC-CB9A-4AA5-9F22-33B557DFC47D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

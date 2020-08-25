@@ -1,6 +1,6 @@
 ﻿[assembly: System.Reflection.AssemblyVersion("0.0.*")]
 
-namespace DecodeServerClient
+namespace AzCCIWinClient
 {
     using System;
     using System.Diagnostics;

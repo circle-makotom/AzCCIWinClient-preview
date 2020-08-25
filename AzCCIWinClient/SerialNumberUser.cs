@@ -1,6 +1,6 @@
-﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DecodeServerClientTest")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("AzCCIWinClientTest")]
 
-namespace DecodeServerClient
+namespace AzCCIWinClient
 {
     internal class SerialNumberUser
     {

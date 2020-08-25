@@ -1,6 +1,6 @@
-﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DecodeServerClientTest")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("AzCCIWinClientTest")]
 
-namespace DecodeServerClient
+namespace AzCCIWinClient
 {
     using System;
     using System.Collections.Generic;

@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Compute version number
           command: |
-            (Select-String -Path .\DecodeServerClient\Program.cs -Pattern "System.Reflection.AssemblyVersion\(`"([^*]*)\*`"\)").Matches[0].Groups[1].Value + $env:CIRCLE_BUILD_NUM + "-" + $env:CIRCLE_SHA1.Substring(0, 7) | Tee-Object version.txt
+            (Select-String -Path .\AzCCIWinClient\Program.cs -Pattern "System.Reflection.AssemblyVersion\(`"([^*]*)\*`"\)").Matches[0].Groups[1].Value + $env:CIRCLE_BUILD_NUM + "-" + $env:CIRCLE_SHA1.Substring(0, 7) | Tee-Object version.txt
       - persist_to_workspace:
           root: ./
           paths:
@@ -22,18 +22,18 @@ jobs:
       - run:
           name: Build with dotnet
           command: |
-            dotnet build .\DecodeServerClient.sln --configuration Release -p:Version=$(Get-Content version.txt) -r win10-x64
-            dotnet publish DecodeServerClient\DecodeServerClient.csproj --configuration Release -p:PublishSingleFile=true -p:Version=$(Get-Content version.txt) -r win10-x64
+            dotnet build .\AzCCIWinClient.sln --configuration Release -p:Version=$(Get-Content version.txt) -r win10-x64
+            dotnet publish AzCCIWinClient\AzCCIWinClient.csproj --configuration Release -p:PublishSingleFile=true -p:Version=$(Get-Content version.txt) -r win10-x64
       - run:
           name: Test with VSTest
           command: |
-            dotnet vstest .\DecodeServerClientTest\bin\Release\netcoreapp3.1\win10-x64\DecodeServerClientTest.dll /InIsolation /platform:x64 /logger:"console;verbosity=detailed"
+            dotnet vstest .\AzCCIWinClientTest\bin\Release\netcoreapp3.1\win10-x64\AzCCIWinClientTest.dll /InIsolation /platform:x64 /logger:"console;verbosity=detailed"
       - persist_to_workspace:
-          root: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/
+          root: AzCCIWinClient/bin/Release/netcoreapp3.1/win10-x64/
           paths:
             - publish
       - store_artifacts:
-          path: DecodeServerClient/bin/Release/netcoreapp3.1/win10-x64/publish
+          path: AzCCIWinClient/bin/Release/netcoreapp3.1/win10-x64/publish
 
   release:
     executor: github-release/default
