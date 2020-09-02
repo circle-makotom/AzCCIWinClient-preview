@@ -13,7 +13,7 @@ namespace AzCCIWinClient
 
         internal string GreetingMessage()
         {
-            return $"こんにちは, {this.User}!";
+            return $"Hello, {this.User}!";
         }
     }
 }
