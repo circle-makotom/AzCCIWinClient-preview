@@ -12,10 +12,10 @@
             string[] testedName = { "Alice", "Bob" };
             var inst = new SayHello(testedName[0]);
 
-            Assert.AreEqual($"Konnichiwa, {testedName[0]}!", inst.GreetingMessage());
+            Assert.AreEqual($"Hi, {testedName[0]}!", inst.GreetingMessage());
 
             inst.User = testedName[1];
-            Assert.AreEqual($"Konnichiwa, {testedName[1]}!", inst.GreetingMessage());
+            Assert.AreEqual($"Hi, {testedName[1]}!", inst.GreetingMessage());
         }
     }
 }
