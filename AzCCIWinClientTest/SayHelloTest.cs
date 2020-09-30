@@ -9,13 +9,16 @@
         [TestMethod]
         public void GreetingMessageTest()
         {
-            string[] testedName = { "Alice", "Bob" };
+            string[] testedName = { "Alice", "Bob", string.Empty };
             var inst = new SayHello(testedName[0]);
 
-            Assert.AreEqual($"Hi, {testedName[0]}! Welcome to this app.", inst.GreetingMessage());
+            Assert.AreEqual($"Bonjour, {testedName[0]}! Welcome to this app.", inst.GreetingMessage());
 
             inst.User = testedName[1];
-            Assert.AreEqual($"Hi, {testedName[1]}! Welcome to this app.", inst.GreetingMessage());
+            Assert.AreEqual($"Bonjour, {testedName[1]}! Welcome to this app.", inst.GreetingMessage());
+
+            inst.User = testedName[2];
+            Assert.AreEqual($"Bonjour, anonymous! Welcome to this app.", inst.GreetingMessage());
         }
     }
 }
