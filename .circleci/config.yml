@@ -22,7 +22,8 @@ jobs:
       - run:
           name: Build with dotnet
           command: |
-            dotnet build .\AzCCIWinClient.sln --configuration Release -p:Version=$(Get-Content version.txt) -r win10-x64
+            $ErrorActionPreference = "Stop"
+            dotnet build .\AzCCIWinClient.sln --configuration Release -p:Version=$(Get-Content version.txt)
             dotnet publish AzCCIWinClient\AzCCIWinClient.csproj --configuration Release -p:PublishSingleFile=true -p:Version=$(Get-Content version.txt) -r win10-x64
       - run:
           name: Test with VSTest
