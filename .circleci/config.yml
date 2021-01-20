@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Test with VSTest
           command: |
-            dotnet vstest .\AzCCIWinClientTest\bin\Release\netcoreapp3.1\win10-x64\AzCCIWinClientTest.dll /InIsolation /platform:x64 /logger:"console;verbosity=detailed"
+            dotnet vstest .\AzCCIWinClientTest\bin\Release\netcoreapp3.1\AzCCIWinClientTest.dll /InIsolation /platform:x64 /logger:"console;verbosity=detailed"
       - persist_to_workspace:
           root: AzCCIWinClient/bin/Release/netcoreapp3.1/win10-x64/
           paths:
