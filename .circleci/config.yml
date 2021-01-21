@@ -25,7 +25,7 @@ jobs:
             $ErrorActionPreference = "Stop"
             dotnet build .\AzCCIWinClient.sln --configuration Release -p:Version=$(Get-Content version.txt)
             dotnet publish AzCCIWinClient\AzCCIWinClient.csproj --configuration Release -p:PublishSingleFile=true -p:Version=$(Get-Content version.txt) -r win10-x64
-            Compress-Archive .\AzCCIWinClientTest\bin\Release\netcoreapp3.1\win10-x64\publish\AzCCIWinClient.exe .\AzCCIWinClientTest\bin\Release\netcoreapp3.1\win10-x64\publish\AzCCIWinClient.zip
+            Compress-Archive .\AzCCIWinClient\bin\Release\netcoreapp3.1\win10-x64\publish\AzCCIWinClient.exe .\AzCCIWinClient\bin\Release\netcoreapp3.1\win10-x64\publish\AzCCIWinClient.zip
       - run:
           name: Test with VSTest
           command: |
